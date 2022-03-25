@@ -2,12 +2,17 @@ import pandas as pd
 import os
 
 
-
+  #将一个文件夹内的所有csv进行上下合并返回一个df
 def concat_csv(path):
     files = os.listdir(path)
     num_files = len(files)
+    if num_files == 0:
+        return False
     obj_file = os.path.join(path, files[0])
+
     result = pd.read_csv(obj_file)
+    if result is None:
+        return None
     print(len(files))
 
 
@@ -20,20 +25,52 @@ def concat_csv(path):
     print(result)
     return result.sort_values(by="date")
 
-# obj_file0 = os.path.join(path, files[0])
-# obj_file1 = os.path.join(path, files[1])
-# file0 = pd.read_csv(obj_file0)
-# file1 = pd.read_csv(obj_file1)
-#
-# data1 = pd.concat([file1, file0])
-# data1 = data1.sort_values(by='index')
+
+def merge_csv(dir_path, to_path):
+    files = os.listdir(dir_path)
+    result = pd.read_csv(dir_path + '\\' + files[0], index_col="date")
+    length = len(files)
+    for i in range(1, length):
+        tmp = pd.read_csv(dir_path + '\\' + files[i],index_col="date")
+        result = pd.merge(result, tmp, on='date', how='outer')
+    result.to_csv(to_path + '\\' + 'allinone.csv')
+
+
 if __name__ == '__main__':
-    path = r"C:\Users\lyq92\Desktop\DataAnalyse\to_all0-100\1"
-    # for i in range(2016, 2019):
-    #     file_path = path + '\\' + str(i) + 'yearflow.csv'
-    #     file = concat_csv(file_path)
-    #     file = file.sort_values(by='index')
-    #     file.to_csv(file_path+'\\' + 'yearflow.csv')
-    file = concat_csv(path)
-    # file = file.sort_values(by='index')
-    file.to_csv(path + '\\'+ '1tot.csv')
+      # 合并
+    dir_path = r"C:\Users\LYQ\Desktop\datanalyze\to_all0-100\allinone1"
+    to_path = r'C:\Users\LYQ\Desktop\datanalyze\to_all0-100\allinone2'
+
+    merge_csv(dir_path, to_path)
+
+
+
+    # 尝试合并1号station
+    #   dir_path = r'C:\Users\LYQ\Desktop\datanalyze\to_all0-100\1'
+    #   to_path = r'C:\Users\LYQ\Desktop\datanalyze\to_all0-100\allinonetest'
+    #   file = concat_csv(dir_path)
+    #   file = file.rename({'0':'1'},axis=1)
+    #   file.to_csv(to_path + '\\'+ "1.csv")
+
+    # 上下拼接每个station
+    # to_path = r'C:\Users\LYQ\Desktop\datanalyze\to_all0-100\allinonetest'
+    # for i in range(1, 101):
+    #     dir_path = r'C:\Users\LYQ\Desktop\datanalyze\to_all0-100' + '\\'+ str(i)
+    #     file = concat_csv(dir_path)
+    #     if file is False:
+    #           continue
+    #     file = file.rename({str(i-1): str(i)}, axis=1)
+    #     file.to_csv(to_path + '\\' + str(i) + ".csv")
+
+
+    # 转移文件到另一个文件夹中
+    # for i in range(100):
+    #     path1 = path + '\\' + str(i+1)
+    #     file = concat_csv(path1)
+    #     if file is False:
+    #         continue
+    #
+    #     file.to_csv(to_path + '\\' + str(i+1)+'tot.csv')
+
+
+

@@ -33,7 +33,7 @@ def mkdir(path):
 
 
 # 定义要创建的目录
-mkpath = r"C:\Users\lyq92\Desktop\DataAnalyse\to_all0-100"
+mkpath = r"C:\Users\LYQ\Desktop\datanalyze\to_all0-100"
 # 调用函数
 
 for i in range(1, 101):
