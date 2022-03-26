@@ -28,18 +28,20 @@ def concat_csv(path):
 
 def merge_csv(dir_path, to_path):
     files = os.listdir(dir_path)
-    result = pd.read_csv(dir_path + '\\' + files[0], index_col="date")
+    result = pd.read_csv(dir_path + '\\' + files[0], index_col=0,)
     length = len(files)
     for i in range(1, length):
-        tmp = pd.read_csv(dir_path + '\\' + files[i],index_col="date")
+        tmp = pd.read_csv(dir_path + '\\' + files[i], index_col=0)
         result = pd.merge(result, tmp, on='date', how='outer')
     result.to_csv(to_path + '\\' + 'allinone.csv')
 
 
 if __name__ == '__main__':
       # 合并
-    dir_path = r"C:\Users\LYQ\Desktop\datanalyze\to_all0-100\allinone1"
-    to_path = r'C:\Users\LYQ\Desktop\datanalyze\to_all0-100\allinone2'
+    # dir_path = r"C:\Users\LYQ\Desktop\datanalyze\to_all0-100\allinone1"
+    # to_path = r'C:\Users\LYQ\Desktop\datanalyze\to_all0-100\allinone2'
+    dir_path = r"C:\Users\lyq92\Desktop\DataAnalyse\to_all0-100\allinone"
+    to_path = r'C:\Users\lyq92\Desktop\DataAnalyse\to_all0-100\test'
 
     merge_csv(dir_path, to_path)
 
@@ -53,13 +55,12 @@ if __name__ == '__main__':
     #   file.to_csv(to_path + '\\'+ "1.csv")
 
     # 上下拼接每个station
-    # to_path = r'C:\Users\LYQ\Desktop\datanalyze\to_all0-100\allinonetest'
+    # to_path = r'C:\Users\lyq92\Desktop\DataAnalyse\to_all0-100\allinone'
     # for i in range(1, 101):
-    #     dir_path = r'C:\Users\LYQ\Desktop\datanalyze\to_all0-100' + '\\'+ str(i)
+    #     dir_path = r'C:\Users\lyq92\Desktop\DataAnalyse\to_all0-100' + '\\'+ str(i)
     #     file = concat_csv(dir_path)
     #     if file is False:
     #           continue
-    #     file = file.rename({str(i-1): str(i)}, axis=1)
     #     file.to_csv(to_path + '\\' + str(i) + ".csv")
 
 
