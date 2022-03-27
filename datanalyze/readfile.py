@@ -10,34 +10,6 @@ for j in range(15,100):
     if j == 2 or j == 15 or j == 18 or j == 24 or j == 35 or j == 39 or j == 40 or j == 41 or \
        j == 42 or j == 57 or j == 65 or j == 72 or j == 76 or j == 91 or j == 99:
         continue
-    # if j == 15:
-    #     continue
-    # if j == 18:
-    #     continue
-    # if j == 24:
-    #     continue
-    # if j == 35:
-    #     continue
-    # if j == 39:
-    #     continue
-    # if j == 40:
-    #     continue
-    # if j == 41:
-    #     continue
-    # if j == 42:
-    #     continue
-    # if j == 57:
-    #     continue
-    # if j == 65:
-    #     continue
-    # if j == 72:
-    #     continue
-    # if j == 76:
-    #     continue
-    # if j == 91:
-    #     continue
-    # if j == 99:
-    #     continue
     data = []
     list = ['f', 'pl', 't', 'p', 'tot', 'md', 'ye', 'recTime', 'thetime']
     for i in range(0, 10):

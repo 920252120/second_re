@@ -22,7 +22,7 @@ def concat_csv(path):
         file = pd.read_csv(obj_file)
         result = pd.concat([result, file])
     result = result.rename(columns={"Unnamed: 0":"date"})
-    print(result)
+
     return result.sort_values(by="date")
 
 
@@ -38,12 +38,15 @@ def merge_csv(dir_path, to_path):
 
 if __name__ == '__main__':
       # 合并
-    # dir_path = r"C:\Users\LYQ\Desktop\datanalyze\to_all0-100\allinone1"
-    # to_path = r'C:\Users\LYQ\Desktop\datanalyze\to_all0-100\allinone2'
-    dir_path = r"C:\Users\lyq92\Desktop\DataAnalyse\to_all0-100\allinone"
-    to_path = r'C:\Users\lyq92\Desktop\DataAnalyse\to_all0-100\test'
+    # dir_path = r"C:\Users\LYQ\Desktop\datanalyze\to_all0-100\allinonetest"
+    # to_path = r'C:\Users\LYQ\Desktop\datanalyze\to_all0-100\allinone'
+    # dir_path = r"C:\Users\lyq92\Desktop\DataAnalyse\to_all0-100\allinone"
+    # to_path = r'C:\Users\lyq92\Desktop\DataAnalyse\to_all0-100\test'
 
-    merge_csv(dir_path, to_path)
+
+    dir_path = r'C:\Users\LYQ\Desktop\datanalyze\2015-2019yearflow'
+    to_path = r'C:\Users\LYQ\Desktop\datanalyze\2015-2019yearflow'
+    concat_csv(dir_path, to_path)
 
 
 
